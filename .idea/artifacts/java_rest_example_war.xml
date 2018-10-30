@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="java-rest-example:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="bookstore-0.1.war">
+      <element id="artifact" artifact-name="java-rest-example:war exploded" />
+    </root>
+  </artifact>
+</component>
