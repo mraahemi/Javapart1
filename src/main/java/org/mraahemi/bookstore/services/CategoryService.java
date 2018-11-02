@@ -40,7 +40,7 @@ public class CategoryService
         Connection c = null;
         Statement stmt = null;
         ResultSet rs = null;
-        /*try
+        try
         {
             Class.forName("org.postgresql.Driver");
             
@@ -51,11 +51,11 @@ public class CategoryService
             System.out.println("Opened database successfully");
 
             stmt = c.createStatement();
-            rs = stmt.executeQuery("SELECT category_type FROM category;");
+            rs = stmt.executeQuery("SELECT * FROM category;");
             List<Category> titles = new LinkedList<>();
             while (rs.next())
             {
-            	titles.add(new Category(rs.getString("category_type")));
+            	titles.add(new Category(rs.getString("category_type","category_id")));
             }
             
             
@@ -64,16 +64,15 @@ public class CategoryService
             c.close();
 
             System.out.println("Operation done successfully");
-            String booksj = objectMapper.writeValueAsString(titles);
-            return Response.status(Status.OK).entity(new Category(booksj)).build();
+            String categorysj = objectMapper.writeValueAsString(titles);
+            return Response.status(Status.OK).entity(new Category(categorysj)).build();
         }
         catch (Exception e)
         {
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
-        }
+        }*/
         //return Response.status(Status.OK).entity(new Category()).build();*/
-        
-        try {
+        /*        try {
 			// Register JDBC driver
 			
 			Class.forName("com.mysql.jdbc.Driver");
@@ -101,11 +100,12 @@ public class CategoryService
 			rs.close();
 			stmt.close();
 			c.close();
-			String category_out = objectMapper.writeValueAsString(new Category(category_type));
-            return Response.status(Status.OK).entity(new Category(category_out)).build();
+			String category_out = objectMapper.writeValueAsString(new Category(category_type,category_id));
+            return Response.status(Status.OK).entity(new Category(category_out,category_id)).build();
 		} catch (Exception e)
         {
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
-        }
+        }*/
+        
     }
 }

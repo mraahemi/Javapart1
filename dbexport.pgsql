@@ -63,7 +63,7 @@ CREATE TABLE public.book (
     title character varying(100) NOT NULL,
     price integer NOT NULL,
     author character varying(100) NOT NULL,
-    category public.cat
+    category_id character varying(255) NOT NULL
 );
 
 
@@ -74,7 +74,8 @@ ALTER TABLE public.book OWNER TO postgres;
 --
 
 CREATE TABLE public.category (
-    type character varying(100) NOT NULL
+    category_type character varying(255) NOT NULL,
+    category_id character varying(255) NOT NULL
 );
 
 
@@ -84,21 +85,21 @@ ALTER TABLE public.category OWNER TO postgres;
 -- Data for Name: book; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.book (bookid, title, price, author, category) FROM stdin;
-1627794247	ROBIN	1599	Dave Itzkoff	Biography and Memoir
-0132350882	CLEAN CODE: A HANDBOOK OF AGILE SOFTWARE CRAFTSMANSHIP	1599	Robert C. Martin	Computers
-1118008189	HTML AND CSS: DESIGN AND BUILD WEBSITES	1599	Jon Duckett	Computers
-1501175513	FEAR: TRUMP IN THE WHITE HOUSE	2000	Bob Woodward	Biography and Memoir
-1476795924	LEADERSHIP: IN TURBULENT TIMES	2000	Doris Kearns Goodwin	History
-0786965614	MONSTER MANUAL	2000	Wizards Rpg Team	Entertainment
-0786965366	Rich Dad Poor Dad	2000	Robert Kiyosaki	Business and Finance
-2785565366	Nineteen Eighty-Four	1949	George Orwell	Fiction
-4278861391	The Martian	2011	Andy Weir	Science Fiction
-3359814682	The Secret	2006	Rhonda Byrne	Self-Help
-8547632691	How Not to Die	2015	Gene Stone	Health
-7165935247	The Future of the Mind	2014	Michio Kaku	Science and Nature
-1563489522	Leaves of Grass	1855	Walt Whitman	Poetry
-1523647221	Golestan	1258	Saadi	Poetry
+COPY public.book (bookid, title, price, author, category_id) FROM stdin;
+1627794247	ROBIN	1599	Dave Itzkoff	1
+0132350882	CLEAN CODE: A HANDBOOK OF AGILE SOFTWARE CRAFTSMANSHIP	1599	Robert C. Martin	3
+1118008189	HTML AND CSS: DESIGN AND BUILD WEBSITES	1599	Jon Duckett	3
+1501175513	FEAR: TRUMP IN THE WHITE HOUSE	2000	Bob Woodward	1
+1476795924	LEADERSHIP: IN TURBULENT TIMES	2000	Doris Kearns Goodwin	5
+0786965614	MONSTER MANUAL	2000	Wizards Rpg Team	4
+0786965366	Rich Dad Poor Dad	2000	Robert Kiyosaki	2
+2785565366	Nineteen Eighty-Four	1949	George Orwell	6
+4278861391	The Martian	2011	Andy Weir	7
+3359814682	The Secret	2006	Rhonda Byrne	8
+8547632691	How Not to Die	2015	Gene Stone	9
+7165935247	The Future of the Mind	2014	Michio Kaku	10
+1563489522	Leaves of Grass	1855	Walt Whitman	11
+1523647221	Golestan	1258	Saadi	11
 \.
 
 
@@ -106,19 +107,43 @@ COPY public.book (bookid, title, price, author, category) FROM stdin;
 -- Data for Name: category; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.category (type) FROM stdin;
-Biography and Memoir
-Business and Finance
-Computers
-Entertainment
-History
-Fiction
-Science Fiction
-Self-Help
-Health
-Science and Nature
-Poetry
+COPY public.category (category_type, category_id) FROM stdin;
+Biography and Memoir	1
+Business and Finance	2
+Computers	3
+Entertainment	4
+History	5
+Fiction	6
+Science Fiction	7
+Self-Help	8
+Health	9
+Science and Nature	10
+Poetry	11
 \.
+
+
+--
+-- Name: book book_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.book
+    ADD CONSTRAINT book_pkey PRIMARY KEY (bookid, category_id);
+
+
+--
+-- Name: category category_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.category
+    ADD CONSTRAINT category_pkey PRIMARY KEY (category_id);
+
+
+--
+-- Name: book book_category_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.book
+    ADD CONSTRAINT book_category_id_fkey FOREIGN KEY (category_id) REFERENCES public.category(category_id);
 
 
 --

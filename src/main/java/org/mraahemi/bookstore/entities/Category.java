@@ -8,25 +8,19 @@ public class Category
     @JsonProperty("name")
     public String name;
 
-    @JsonProperty("id")
-    public int id;
+   @JsonProperty("id")
+   public String id;
 
     public Category()
     {
         this.name = "test";
-        this.id = 1;
+        this.id = "1";
     }
 
-    public Category(String name, int id)
+    public Category(String name, String id)
     {
         this.name = name;
         this.id = id;
     }
     
-    public Category(String name)
-    {
-        this.name = name;
-
-    }
-
 }
