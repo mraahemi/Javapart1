@@ -44,35 +44,10 @@ public class CategoryService
     public Response getCategories()
     {
     	ObjectMapper objectMapper = new ObjectMapper();
-        Connection c = null;
-        Statement stmt = null;
-        ResultSet rs = null;
+    	CategoryDao dao = new CategoryDao();
         try
         {
-            Class.forName("org.postgresql.Driver");
-            
-            c = DriverManager
-                    .getConnection("jdbc:postgresql://localhost:5432/bookstore_db",
-                                   "postgres", "root");
-            c.setAutoCommit(false);
-            System.out.println("Opened database successfully");
-
-            stmt = c.createStatement();
-            rs = stmt.executeQuery("SELECT * FROM category;");
-            List<Category> titles = new LinkedList<>();
-            while (rs.next())
-            {
-               titles.add(new Category(rs.getString("category_type"), rs.getString("category_id")));
-            }
-
-            
-            rs.close();
-            stmt.close();
-            c.close();
-
-            Categories cats = new Categories(titles);
-            System.out.println("Operation done successfully");
-            String categorysj = objectMapper.writeValueAsString(cats);
+            String categorysj = objectMapper.writeValueAsString(dao.getCategories());
             
             File file = new File ("E:\\University\\uOttawa\\System and Architecture\\FinalProject\\bookstore\\src\\main\\webapp\\data.json");
             FileOutputStream fos = new FileOutputStream(file);
