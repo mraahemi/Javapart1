@@ -3,6 +3,7 @@ package org.mraahemi.bookstore.services;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.mraahemi.bookstore.entities.Book;
 import org.mraahemi.bookstore.entities.Books;
+import org.mraahemi.bookstore.entities.Categories;
 import org.mraahemi.bookstore.entities.Category;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -15,6 +16,7 @@ import java.sql.Statement;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.swing.JTextPane;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -25,6 +27,11 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 
 @Path("/category")
 @Component
@@ -55,57 +62,31 @@ public class CategoryService
             List<Category> titles = new LinkedList<>();
             while (rs.next())
             {
-            	titles.add(new Category(rs.getString("category_type","category_id")));
+               titles.add(new Category(rs.getString("category_type"), rs.getString("category_id")));
             }
-            
+
             
             rs.close();
             stmt.close();
             c.close();
 
+            Categories cats = new Categories(titles);
             System.out.println("Operation done successfully");
-            String categorysj = objectMapper.writeValueAsString(titles);
-            return Response.status(Status.OK).entity(new Category(categorysj)).build();
+            String categorysj = objectMapper.writeValueAsString(cats);
+            
+            File file = new File ("E:\\University\\uOttawa\\System and Architecture\\FinalProject\\bookstore\\src\\main\\webapp\\data.json");
+            FileOutputStream fos = new FileOutputStream(file);
+            byte[] bytesArray = categorysj.getBytes();
+            fos.write(bytesArray);
+            fos.flush();
+            return Response.status(Status.OK).entity(categorysj).build();
+            
+            
         }
         catch (Exception e)
         {
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
-        }*/
-        //return Response.status(Status.OK).entity(new Category()).build();*/
-        /*        try {
-			// Register JDBC driver
-			
-			Class.forName("com.mysql.jdbc.Driver");
-		
-
-			// Open a connection
-			c = DriverManager
-                    .getConnection("jdbc:postgresql://localhost:5432/bookstore_db",
-                                   "postgres", "root");
-
-			// Execute SQL query
-			stmt = c.createStatement();
-			String sql;
-			sql = "SELECT * from category";
-			rs = stmt.executeQuery(sql);
-
-			// Extract data from result set
-			while(rs.next()){
-				//Retrieve by column name
-				int category_id  = rs.getInt("category_id");
-				String category_type  = rs.getString("category_type");
-			}
-
-			// Clean-up environment
-			rs.close();
-			stmt.close();
-			c.close();
-			String category_out = objectMapper.writeValueAsString(new Category(category_type,category_id));
-            return Response.status(Status.OK).entity(new Category(category_out,category_id)).build();
-		} catch (Exception e)
-        {
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
-        }*/
+        }
         
     }
 }

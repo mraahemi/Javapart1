@@ -11,6 +11,9 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
+
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -46,7 +49,7 @@ public class BooksService
             System.out.println("Opened database successfully");
 
             stmt = c.createStatement();
-            rs = stmt.executeQuery("SELECT title FROM book where bookid='" + id + "';");
+            rs = stmt.executeQuery("SELECT title FROM book where category_id='" + id + "';");
             List<Book> titles = new LinkedList<>();
             while (rs.next())
             {
@@ -55,9 +58,18 @@ public class BooksService
             rs.close();
             stmt.close();
             c.close();
+            
 
             System.out.println("Operation done successfully");
             String booksj = objectMapper.writeValueAsString(new Books(titles));
+
+
+            	File file = new File ("E:\\University\\uOttawa\\System and Architecture\\FinalProject\\bookstore\\src\\main\\webapp\\+"+id+".json");
+            	FileOutputStream fos = new FileOutputStream(file);
+            	byte[] bytesArray = booksj.getBytes();
+            	fos.write(bytesArray);
+            	fos.flush();
+
             return Response.status(Response.Status.OK).entity(booksj).build();
         }
         catch (Exception e)

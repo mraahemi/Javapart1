@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Payment Gateway</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Prologue Book Store</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span></a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign In</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="jumbotron text-center">
+    <h1>
+        Make Your Payment <i class="fa fa-credit-card"></i>
+    </h1>
+    <div class="icon-container">
+    </div>
+</div>
+<div class="container">
+        <div class="col-sm-6">
+            <div class="jumbotron text-left">
+                <h3>
+                    Credit Card Information:
+                    <i class="fa fa-cc-visa fa-sm " style="color:navy;"></i>
+                    <i class="fa fa-cc-amex fa-sm" style="color:blue;"></i>
+                    <i class="fa fa-cc-mastercard fa-sm" style="color:red;"></i>
+                    <i class="fa fa-cc-discover fa-sm" style="color:orange;"></i>
+                </h3>
+                <form class="form-horizontal">
+                    <fieldset>
+
+
+                        <div class="control-group">
+                            <label class="control-label" for="creditcard">Credit Card Number</label>
+                            <div class="controls">
+                                <input id="creditcard" name="creditcard" type="text" placeholder="1234-5678-1234-5678" maxlength="16" class="input-large form-control">
+
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="expmonth">Expiry Month</label>
+                            <div class="controls">
+                                <select id="expmonth" name="expmonth" class="input-large form-control">
+                                    <option>Month</option>
+                                    <option>January</option>
+                                    <option>February</option>
+                                    <option>March</option>
+                                    <option>April</option>
+                                    <option>May</option>
+                                    <option>June</option>
+                                    <option>July</option>
+                                    <option>August</option>
+                                    <option>September</option>
+                                    <option>October</option>
+                                    <option>November</option>
+                                    <option>December</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="expyear">Expiry Year</label>
+                            <div class="controls">
+                                <select id="expyear" name="expyear" class="input-large form-control">
+                                    <option>Year</option>
+                                    <option>2018</option>
+                                    <option>2019</option>
+                                    <option>2020</option>
+                                    <option>2021</option>
+                                    <option>2022</option>
+                                    <option>2023</option>
+                                    <option>2024</option>
+                                    <option>2025</option>
+                                    <option>2026</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="cvv">CVV</label>
+                            <div class="controls">
+                                <input id="cvv" name="cvv" type="password" placeholder="XXX" maxlength="3" class="input-mini form-control">
+
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="ncard">Name on Card</label>
+                            <div class="controls">
+                                <input id="ncard" name="ncard" type="text" placeholder="As Printed on Card" class="input-large form-control">
+
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="nbank">Name on Bank</label>
+                            <div class="controls">
+                                <input id="nbank" name="nbank" type="text" placeholder="Bank Name" class="input-large form-control">
+
+                            </div>
+                        </div>
+
+                    </fieldset>
+                </form>
+
+            </div>
+            <button type="button" class="btn btn-danger btn-lg">Back to Cart</button>
+        </div>
+        <div class="col-sm-6">
+            <div class="jumbotron text-left">
+                <h3>Shipping & Billing Information </h3>
+                <form class="form-horizontal">
+                    <fieldset>
+
+                        <div class="control-group">
+                            <label class="control-label" >Address Line 1</label>
+                            <div class="controls">
+                                <input name="textinput" type="text" placeholder="Address Line 1" class="input-xlarge form-control">
+                            </div>
+                        </div>
+
+
+                        <div class="control-group">
+                            <label class="control-label" for="Address Line 2">Address Line 2</label>
+                            <div class="controls">
+                                <input id="Address Line 2" name="Address Line 2" type="text" placeholder="Address Line 2 (Optional)" class="input-xlarge form-control">
+
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" >City</label>
+                            <div class="controls">
+                                <input name="textinput" type="text" placeholder="City" class="input-medium form-control">
+
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="selectbasic">Province</label>
+                            <div class="controls">
+                                <select id="selectbasic" name="selectbasic" class="input-small form-control">
+                                    <option>Select</option>
+                                    <option>Alberta</option>
+                                    <option>British Columbia</option>
+                                    <option>Manitoba</option>
+                                    <option>New Brunswick</option>
+                                    <option>Newfoundland and Labrador</option>
+                                    <option>Nova Scotia</option>
+                                    <option>Ontario</option>
+                                    <option>Prince Edward Island</option>
+                                    <option>Saskatchewan</option>
+                                    <option>Quebec</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="">Pin Code</label>
+                            <div class="controls">
+                                <input id="" name="" type="text" placeholder="Pin Code" class="input-large form-control">
+
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" >Phone</label>
+                            <div class="controls">
+                                <div class="input-prepend">
+                                    <input name="prependedtext" class="input-xlarge form-control" placeholder="xxx-xxx-xxxx" type="text">
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </fieldset>
+                </form>
+
+            </div>
+            <button type="button" class="btn btn-success btn-lg pull-right" >Secure Checkout</button>
+        </div>
+
+      </div>
+</body>
+</html>

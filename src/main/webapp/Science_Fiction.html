@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Science Fiction</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="script.js"></script>
+<script>
+    
+	$(function() {
+
+		$.getJSON('7.json', function(data) {
+			$.each(data.books, function(i, f) {
+				var tblRow = "<tr>" + "<td>" + f.name + "</td>" 
+				$(tblRow).appendTo("#userdata tbody");
+				
+			});
+			
+
+		});
+
+	});
+
+    </script>
+
+</head>
+<body ng-app="myCatalogueApp">
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target="#myNavbar">
+					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">Prologue Book Store</a>
+			</div>
+			<div class="collapse navbar-collapse" id="myNavbar">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#"><span
+							class="glyphicon glyphicon-shopping-cart"></span></a></li>
+					<li><a href="#"><span class="glyphicon glyphicon-user"></span>
+							Sign In</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div class="jumbotron text-center">
+		<h1>
+			Name of Books: <i class="fa fa-address-book" aria-hidden="true"></i>
+		</h1>
+	</div>
+	<div class="wrapper">
+		<div class="profile">
+			<table id="userdata" border="2" align="center" width=70%>
+				<thead>
+					<th>Name</th>
+				</thead>
+				<tbody>
+
+				</tbody>
+			</table>
+
+		</div>
+	</div>
+
+</body>
+
+</html>
